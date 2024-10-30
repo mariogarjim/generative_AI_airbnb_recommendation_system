@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+
+    #main-container {
+      text-align: center;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    #response-container {
+      margin-bottom: 20px;
+    }
+
+    #airbnb-img {
+      width: 100%; 
+      max-width: 320px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      display: none; 
+      margin: 20px auto 10px;
+      transition: opacity 0.5s ease;
+    }
+
+    #chat-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #chat-input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    #chat-input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    #chat-form button {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    #chat-form button:hover {
+      background-color: #0056b3;
+    }
+
+    #chat-form button:active {
+      transform: scale(0.98);
+    }
+
+    #airbnb-url {
+      display: block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #airbnb-url:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-container">
+    <div id="response-container">
+      <img id="airbnb-img" src="" alt="Response Image" />
+      <p id="airbnb-recommendation"></p>
+      <a id="airbnb-url" target="_blank"></a>
+    </div>
+
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Ask for a recommendation..." />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    // DOM element selections
+    const chatInput = document.getElementById('chat-input');
+    const chatForm = document.getElementById('chat-form');
+    const airbnbImg = document.getElementById('airbnb-img');
+    const airbnbRecommendation = document.getElementById('airbnb-recommendation');
+    const airbnbUrl = document.getElementById('airbnb-url');
+
+    // Handle form submission
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      const userMessage = chatInput.value.trim();
+      if (!userMessage) return; // Ignore empty submissions
+
+      try {
+        const res = await fetch('http://localhost:5000/respond', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userMessage }),
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch recommendation.");
+
+        const data = await res.json();
+        console.log(data);
+
+        // Display the received data in the UI
+        if (data.image_url) {
+          airbnbImg.src = data.image_url;
+          airbnbImg.style.display = "block";
+          airbnbImg.style.opacity = 1;
+        }
+        airbnbRecommendation.textContent = data.recommendation || '';
+        airbnbUrl.textContent = data.url ? "View on Airbnb" : '';
+        airbnbUrl.href = data.url || '#';
+
+      } catch (error) {
+        console.error("Error:", error);
+      }
+
+      chatInput.value = ''; // Clear input after sending
+    }
+
+    // Add event listener for form submission
+    chatForm.addEventListener('submit', handleSubmit);
+  </script>
+</body>
+</html>
