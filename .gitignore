@@ -1,0 +1,6 @@
+pyproject.toml
+downloads/
+downloads/*
+*.xlsx
+*.ipynb
+.env
