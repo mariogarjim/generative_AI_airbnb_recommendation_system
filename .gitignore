@@ -4,4 +4,4 @@ downloads/*
 *.xlsx
 *.ipynb
 .env
-backend/__pycache__/airbnb_recomendator.cpython-39.pyc
+*.pyc
