@@ -5,3 +5,4 @@ downloads/*
 *.ipynb
 .env
 *.pyc
+airbnb_env/
