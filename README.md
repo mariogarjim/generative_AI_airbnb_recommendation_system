@@ -58,3 +58,42 @@ We give to the system some information about our travel.
 And we get a recommendation consisting of a picture of the accommodation, why it's perfect for us, and a link to the Airbnb website:
 
 ![Recommendator Answer Example](docs/airbnb_recommendation_answer.PNG)
+
+## How to use it 📖
+
+### Step 1: Create a virtual environment
+
+```bash
+# Navigate to your project directory
+cd /path/to/your/project
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows
+venv\Scripts\activate
+
+# On macOS and Linux
+source venv/bin/activate
+```
+
+### Step 2: Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Run the backend
+
+```bash
+python backend/app.py
+```
+
+### Step 4: Open the app 
+
+Just double-click the _frontendt/index.html_ file,
+and give to the system information about your trip!!
+
+
+
