@@ -54,7 +54,7 @@ A simplistic frontend was implemented to show the system in a more visual way.
 The procedure is quite straightforward. 
 We give to the system some information about our travel.
 
-![Recommendator Question Example](docs/airbnb_recommendation_question.png)
+![Recommendator Question Example](docs/airbnb_recommendation_question.PNG)
 
 And we get a recommendation consisting of a picture of the accommodation, why it's perfect for us, and a link to the Airbnb website:
 
