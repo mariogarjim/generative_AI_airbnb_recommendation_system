@@ -63,8 +63,8 @@ class AirbnbAssistant:
                         "   - Start each recommendation with '--'.\n"
                         "   - Use '/' consistently to separate each component without spaces around it.\n"
                         "   - Include the id and a brief reason in each recommendation.\n\n"
-                        "8. **Explain Each Recommendation**: For each recommended listing, provide a long explanation of why it is suitable. Try to be precise. "
-                        "Focus on proximity to the destination, maximum price, and any other relevant criteria.\n\n"
+                        "8. **Explain Each Recommendation**: For each recommended listing, provide a short explanation of why it is suitable. "
+                        "Focus on proximity to the destination, maximum price, and any other relevant criteria. IMPORTANT: Avoid declaring listing id.\n\n"
                         "Make all recommendations clear, relevant, and personalized based on the user's request. Use a friendly tone."
                         "9. **Handle Missing or No Matches**: If no listings meet all criteria or you don't have a clear answer, reply with 'False'.\n\n"
         
