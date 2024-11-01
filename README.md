@@ -41,7 +41,7 @@ Despite the differences in phrasing, both users are essentially requesting for a
 
 Traditional solutions often involve multiple drop-down menus filled with a bunch of options. Even Airbnb's own website uses a fancy menu for the user to select their Airbnb requirements. This approach can be frustrating for users, especially when they need a filter that hasn't been considered.
 
-![Airbnb User Interface](docs/airbnb_bar.png)
+![Airbnb User Interface](docs/airbnb_bar.PNG)
 
 This work explores the use of OpenAI's large language model (LLM) to improve the process of extracting user preferences from natural language input, and to reasonedly recommend the perfect Airbnb for the user's needs. 
 
@@ -49,7 +49,7 @@ This work explores the use of OpenAI's large language model (LLM) to improve the
 
 A simplistic frontend was implemented to show the system in a more visual way. 
 
-![Recommendator Menu](docs/airbnb_recommendation_menu.png)
+![Recommendator Menu](docs/airbnb_recommendation_menu.PNG)
 
 The procedure is quite straightforward. 
 We give to the system some information about our travel.
@@ -58,5 +58,5 @@ We give to the system some information about our travel.
 
 And we get a recommendation consisting of a picture of the accommodation, why it's perfect for us, and a link to the Airbnb website:
 
-![Recommendator Answer Example](docs/airbnb_recommendation_answer.png)
+![Recommendator Answer Example](docs/airbnb_recommendation_answer.PNG)
 
