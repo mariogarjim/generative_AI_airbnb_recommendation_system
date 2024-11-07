@@ -1,8 +1,8 @@
 pyproject.toml
 downloads/
-downloads/*
 *.xlsx
 *.ipynb
 .env
 *.pyc
 airbnb_env/
+__pycache__/
