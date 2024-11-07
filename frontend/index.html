@@ -144,7 +144,7 @@
           airbnbImg.style.display = "block";
           airbnbImg.style.opacity = 1;
         }
-        airbnbRecommendation.textContent = data.recommendation || '';
+        airbnbRecommendation.textContent = data.reason || '';
         airbnbUrl.textContent = data.url ? "View on Airbnb" : '';
         airbnbUrl.href = data.url || '#';
 

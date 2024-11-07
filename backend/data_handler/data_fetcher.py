@@ -1,4 +1,5 @@
 import gzip
+import os
 import shutil
 from pathlib import Path
 
@@ -7,6 +8,37 @@ from bs4 import BeautifulSoup
 
 from constants import INSIDE_AIRBNB_URL, MADRID_STRING_TO_SCRAP
 
+
+def fetch_data(download_directory):
+    """Fetch the data from the Inside Airbnb site.
+    
+    Args:
+        download_directory (str): Dir to download data
+    """
+    if not data_exists(download_directory):
+        urls = inside_airbnb_scrapper()
+        if urls:
+            download_and_uncompress(urls, download_directory)
+        else:
+            print("No URLs found to download.")
+
+def data_exists(download_directory):
+    """Return true if data exist.
+
+        If data exists, won't be downloaded again.
+
+    Args:
+        download_directory (str): Dir to download data
+
+    Returns:
+        True if data exists.
+    """
+    file_listings = "listings_detailed.csv"
+    file_calendar = "calendar_detailed.csv"
+
+    return os.path.isdir(download_directory) and \
+            os.path.isfile(f"{download_directory}/{file_calendar}") and \
+            os.path.isfile(f"{download_directory}/{file_listings}")
 
 def inside_airbnb_scrapper():
     """Scrap Madrid airbnb data from "inside airbnb" webpage
@@ -45,12 +77,12 @@ def download_and_uncompress(urls, download_directory="downloads"):
         )
         uncompressed_file_path = Path(download_directory) / uncompressed_file_name
 
-        if download_file(file_url, compressed_file_path):
+        if download_file(file_url, compressed_file_path):  # noqa: SIM102
             if file_name.endswith(".gz") and uncompress_gz(compressed_file_path, uncompressed_file_path):
                 compressed_file_path.unlink()
 
 def create_directory(directory_path):
-    """Ensure that a directory exists."""
+    """Create directory for downloading."""
     Path(directory_path).mkdir(parents=True, exist_ok=True)
 
 

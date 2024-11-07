@@ -9,8 +9,8 @@ def handle_data():
     """
     listings_detailed, calendar_detailed = read_data()
     airbnb_data = process_data(listings_detailed, calendar_detailed)
-
-    return listings_detailed, airbnb_data
+    
+    return airbnb_data, listings_detailed
 
 
 def read_data():
@@ -63,13 +63,8 @@ def filter_listings_detailed(listings_detailed):
     relevant_columns = [
         "id",
         "name",
-        "description",
-        "neighbourhood_cleansed",
-        "neighbourhood_group_cleansed",
         "latitude",
         "longitude",
-        "property_type",
-        "amenities",
         "host_acceptance_rate",
         "number_of_reviews",
         "review_scores_rating",
@@ -113,7 +108,7 @@ def filter_calendar_detailed(calendar_detailed):
     airbnb_calendar_information = (
         available_dates_airbnbs.groupby("listing_id")
         .apply(
-            lambda x: list(zip(x["date"].to_list(), x["price"].to_list())),
+            lambda x: dict(zip(x["date"].to_list(), x["price"].to_list())),
         )
         .reset_index(name="avaliable_dates_prices")
     )
