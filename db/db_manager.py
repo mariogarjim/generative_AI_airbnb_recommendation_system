@@ -5,7 +5,7 @@ from models import Base
 class DatabaseManager:
     """Class to manage database initialization and sessions."""
     
-    def __init__(self, database_uri="sqlite:///airbnb.db"):
+    def __init__(self, database_uri):
         """
         Initialize the DatabaseManager with a database URI.
         Creates the engine and session factory.

@@ -1,19 +1,9 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from models import Listing, Calendar  
 from data.data_fetcher import fetch_data
 from data.data_preprocessing import read_data, filter_listings_detailed, filter_calendar_detailed
-
-load_dotenv("../.env")  
-
-db_uri = os.getenv('DB_URI')
-
-engine = create_engine(db_uri)
-
-Session = sessionmaker(bind=engine)
-session = Session()
+from db_manager import DatabaseManager
 
 def update_db(session):
     """Update db with up-to-date information"""
@@ -62,4 +52,10 @@ def update_calendar_table(calendar_filtered, session):
         print(f"An error occurred while updating the calendar table: {update_exception}")   
 
 if __name__ == '__main__':
-    update_db()
+    
+    load_dotenv("../.env")  
+    db_uri = os.getenv('DB_URI')
+    
+    database_manager = DatabaseManager()
+    database_manager.init_db()
+    update_db(session=database_manager.get_session())
