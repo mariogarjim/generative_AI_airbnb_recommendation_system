@@ -1,0 +1,9 @@
+# A cron job is configured to update the database once per week.
+# This cron job will run the 'update_db.py' script every Sunday at midnight.
+#
+# Note:
+# - Replace 'username' with your actual system username.
+# - Ensure that the path to Python (/username/bin/python3) and the path to the 
+# script (/home/username/update_db.py) are correct for your system.
+
+0 0 * * SUN /username/bin/python3 /home/username/update_db.py
